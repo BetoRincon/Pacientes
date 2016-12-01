@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="utf-8">
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags-->
+	<title>Tratamiento de Pacientes Crónicos</title>
+
+	 <!-- Bootstrap -->
+    <link href="../estilos/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../estilos/css/login.css" rel="stylesheet">
+
+   
+
+	
+</head>
+<body>
+	<div class="container">
+	<form action="../controlers/php/login.php" method="POST" class="form-signin">
+
+		<h1>Hospital San Juan de Dios de San Gil</h1>
+		<h2>Tratamiento de Pacientes Crónicos</h2>
+		
+		<div class="margin">
+		<input type="text" id="user" name="user" class="form-control" placeholder="Usuario" required>
+
+		<br>
+		<input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+
+		<select class="form-control" name="control">
+		  <option >Rol</option> <option>Usuario</option> <option value="administrador">Administrador</option> 
+		</select><br>
+
+		<input  id ="submit" type="submit" value="Ingresar"  class="btn btn-primary btn-block" >
+		</div>
+
+		<div id="hint">
+			<p></p>
+		</div>
+
+		 
+
+
+		
+	</form>
+	
+	</div>
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="../controlers/js/jquery.js"></script>
+	
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../controlers/js/bootstrap.min.js"></script>
+	<!--<script src="../controlers/js/validar-usuario-ajax.js"></script>-->
+
+
+	
+
+</body>
+</html>
