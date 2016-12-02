@@ -1,5 +1,6 @@
 <?php
  session_start();			
+ include("../controlers/php/conexion.php");
 ?>
 
 <!DOCTYPE html>
@@ -60,11 +61,187 @@
 			padding: 1%;			
 			">
 		
+		<div class="row">
+
+			<div class="col-sm-12">
+
+				<div class="row">
+
+					<div class="col-sm-5">
+						<?php 
+
+						$conn=mysqli_connect($host, $userdb, $pw,$db);
+						if (!$conn) 
+						{
+							die("error: ".mysqli_connect_error());
+						}
+
+						$sql="SELECT TIMESTAMPDIFF(YEAR,`fecha_nac`,CURDATE()) AS edad,
+							sexo as sexo,
+					        emfermedad.enf_nom AS enfermedad
+					        FROM user,emfermedad
+					        WHERE
+					      	user.id_usu=(SELECT user.id_usu FROM user WHERE user.doc_num=".$doc_num." )
+					        AND emfermedad.id_enf=(SELECT usuario_enfermedad.enfermedad_id_enf FROM usuario_enfermedad
+					                               WHERE usuario_enfermedad.usuario_id_usuario=(SELECT user.id_usu FROM user WHERE 									user.doc_num=".$doc_num."))";
+
+					             $result=mysqli_query($conn,$sql);
+					             if (!$result)
+					              {
+					             	die("error en consulta: ");
+					             }
+					             else
+					             {
+					             	while ($data=mysqli_fetch_assoc($result) )
+							{
 		
-		 <?php 
-		 echo "<h3>Datos del Paciente</h3>
-			<p> Número de documento: ".$doc_num."</p>";
-		?>
+								$edad=$data['edad'];
+								$sexo=$data['sexo'];
+					              		$enfermedad=$data['enfermedad'];
+							}
+					              	
+					             }
+					             mysqli_free_result($result);
+						mysqli_close($conn);
+
+
+						 echo "<h3>Datos del Paciente</h3>
+							<p> Número de documento: ".$doc_num."</p>
+							<p>Edad: ".$edad."</p>
+							<p>Sexo: ".$sexo."</p>
+							<p>Enfermedad: ".$enfermedad."</p>";
+						?>							
+					</div>	
+					<div class="col-sm-7">
+						<h3>Seguimiento del Paciente</h3>
+
+						<?php
+							echo "<p>Fecha actual: ".date('d-m-Y')."</p>";
+						?>
+						<form action="#" method="POST"  >
+							
+							<div class="col-xs-3">
+								<div class="form-group">
+								<label for="altura" >Altura [cm]</label>				   
+								<input type="text" class="form-control" id="altura">			
+								</div>
+							</div>
+
+							<div class="col-xs-3">
+								<div class="form-group">
+								<label for="peso" >Peso [Kg]</label>				   
+								<input type="text" class="form-control" id="peso">			
+								</div>
+							</div>
+
+
+							<div class="col-xs-3">
+								<div class="form-group">
+								<label for="riesgo" >Grado de Riesgo</label>				   
+								<input type="text" class="form-control" id="riesgo">			
+								</div>
+							</div>
+
+							<div class="col-xs-3">
+								<div class="form-group">
+								<label for="tfg" >TFG</label>				   
+								<input type="text" class="form-control" id="tfg">			
+								</div>
+							</div>
+
+							<div class="col-xs-3">
+								<div class="form-group">
+								<label for="tas" >TAS</label>				   
+								<input type="text" class="form-control" id="tas">			
+								</div>
+							</div>
+
+							<div class="col-xs-3">
+								<div class="form-group">
+								<label for="tad" >TAD</label>				   
+								<input type="text" class="form-control" id="tad">			
+								</div>
+							</div>
+
+							<div class="col-xs-6">
+								<div class="form-group">
+								<label for="clarificacion" >Clarificación</label>				   
+								<input type="text" class="form-control" id="clarificacion">			
+								</div>
+							</div>
+
+							<div class="col-xs-12">
+								<div class="form-group">
+								<label for="observaciones" >Observaciones</label>			   
+								<textarea class="form-control" id="observaciones"></textarea>			
+								</div>
+							<button type="submit" class="btn btn-primary">Ingresar</button><br><br>	
+
+							</div>					
+
+						</form>
+						<h3>Agregar Enfermedad</h3>
+						
+						<form>
+						<div class="col-xs-12">
+						<div class="form-group">
+						<label for="sel-vivo"> Enfermedades</label>				
+						<select   name="enferm" class="form-control" id="sel-vivo">
+							
+							<?php
+
+								include("../controlers/php/conexion.php");				
+
+										$conn = mysqli_connect($host, $userdb, $pw,$db);
+								                                if (!$conn) 
+								                                {
+								                                        die("Connection failed: " . mysqli_connect_error());
+								                                }
+
+										//query
+										$sql = "SELECT * FROM emfermedad ";
+
+										$result = mysqli_query($conn, $sql);			
+
+										//respuesta de la BD				
+
+										if (mysqli_num_rows($result) > 0) 
+										{
+											
+
+								    		// output data of each row
+								    		while($row = mysqli_fetch_array($result))
+								    		 {
+								    		 	
+								    		 	echo "<option value=' ".$row[enf_cod]." ' >".$row[enf_nom]."</option>";
+								    		 	
+								       		 
+								    		}				    	
+								    		
+
+
+									}
+								    mysqli_free_result($result);
+								    mysqli_close($conn);
+
+							?>
+						
+						</select>
+						</div>
+						<button type="submit" class="btn btn-primary">Agregar</button><br><br>
+						</div>
+						</form>
+						
+
+
+					</div>				
+
+				</div>
+
+			</div>
+		</div>
+
+		
 
 	</div>
 	<br> 
