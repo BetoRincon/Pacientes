@@ -1,0 +1,31 @@
+TABLA ENFERMEDAD
+-----------------------------------------
+CREATE TABLE emfermedad(
+    id_enf INT NOT NULL AUTO_INCREMENT,
+    enf_nom VARCHAR(30) NOT NULL,
+    enf_est VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id_enf)    
+)
+----------------------------------------
+TABLA PROGRAMA
+----------------------------------------
+CREATE TABLE programa( id_prog BIGINT AUTO_INCREMENT NOT NULL,
+ fecha_ing DATE NOT NULL, 
+fecha_eg DATE,
+ activo BOOLEAN NOT NULL, 
+
+PRIMARY KEY (id_prog) )
+
+--------------------------------------------
+TABLA ENFERMEDAD_USUARIO
+---------------------------------------------
+CREATE TABLE usuario_enfermedad (
+	id_usu_enf BIGINT NOT NULL AUTO_INCREMENT,
+    usuario_id_usu BIGINT NOT NULL,
+    emfermedad_id_enf INT NOT NULL,   
+    
+    PRIMARY KEY (id_usu_enf),
+    FOREIGN KEY (usuario_id_usu) REFERENCES usuario(id_usu),
+    FOREIGN KEY (emfermedad_id_enf) REFERENCES emfermedad (id_enf)
+    
+)

@@ -24,7 +24,7 @@
 	<div class="container"> 
 	<!--Nav-->
 	<?php
-				 echo "<nav class='navbar  navbar-default navbar-fixed-top' style='background: white;'>
+				 echo utf8_decode("<nav class='navbar  navbar-default navbar-fixed-top' style='background: white;'>
 					<div class='container'>
 				 <p class='navbar-brand' style=' color: #22467F;' >Usuario: ".strtoupper($_SESSION['usuario'])."</p>
 					<div class='collapse navbar-collapse'>
@@ -37,7 +37,7 @@
 					<p class='navbar-text navbar-right'> | Tratamiento de Pacientes Crónicos</p>
 					</div>
 					</div>
-					</nav>";
+					</nav>");
 				
 	?>
 	</div>
@@ -117,20 +117,22 @@
 
 						<?php
 							echo "<p>Fecha actual: ".date('d-m-Y')."</p>";
+							echo "<form action='../controlers/php/usuarioVisita.php?doc_num=".$doc_num."' method='POST'  >";
+							//meto el form para poder enviar el número de documento al UsuarioVisita
 						?>
-						<form action="#" method="POST"  >
+						
 							
 							<div class="col-xs-3">
 								<div class="form-group">
 								<label for="altura" >Altura [cm]</label>				   
-								<input type="text" class="form-control" id="altura">			
+								<input type="text" class="form-control" id="altura" name="altura">			
 								</div>
 							</div>
 
 							<div class="col-xs-3">
 								<div class="form-group">
 								<label for="peso" >Peso [Kg]</label>				   
-								<input type="text" class="form-control" id="peso">			
+								<input type="text" class="form-control" id="peso" name="peso">			
 								</div>
 							</div>
 
@@ -138,42 +140,42 @@
 							<div class="col-xs-3">
 								<div class="form-group">
 								<label for="riesgo" >Grado de Riesgo</label>				   
-								<input type="text" class="form-control" id="riesgo">			
+								<input type="text" class="form-control" id="riesgo" name="riesgo">			
 								</div>
 							</div>
 
 							<div class="col-xs-3">
 								<div class="form-group">
 								<label for="tfg" >TFG</label>				   
-								<input type="text" class="form-control" id="tfg">			
+								<input type="text" class="form-control" id="tfg" name="tfg">			
 								</div>
 							</div>
 
 							<div class="col-xs-3">
 								<div class="form-group">
 								<label for="tas" >TAS</label>				   
-								<input type="text" class="form-control" id="tas">			
+								<input type="text" class="form-control" id="tas" name="tas">			
 								</div>
 							</div>
 
 							<div class="col-xs-3">
 								<div class="form-group">
 								<label for="tad" >TAD</label>				   
-								<input type="text" class="form-control" id="tad">			
+								<input type="text" class="form-control" id="tad" name="tad">			
 								</div>
 							</div>
 
 							<div class="col-xs-6">
 								<div class="form-group">
 								<label for="clarificacion" >Clarificación</label>				   
-								<input type="text" class="form-control" id="clarificacion">			
+								<input type="text" class="form-control" id="clarificacion" name="clarificacion">			
 								</div>
 							</div>
 
 							<div class="col-xs-12">
 								<div class="form-group">
 								<label for="observaciones" >Observaciones</label>			   
-								<textarea class="form-control" id="observaciones"></textarea>			
+								<textarea class="form-control" id="observaciones" name="observaciones"></textarea>			
 								</div>
 							<button type="submit" class="btn btn-primary">Ingresar</button><br><br>	
 

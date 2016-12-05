@@ -35,7 +35,7 @@
 					<ul class='nav navbar-nav'>
 						<li><a style=' color: #22467F;'  href='principal.php'>Inicio</a></li>
 						<li><a style=' color: #22467F;'  href='registro-paciente.php'>Registrar Paciente</a></li>
-						<li><a style=' color: #22467F;'  href='#'>Registrar Usuario</a></li>
+						
 						
 						
 					</ul>
@@ -262,7 +262,7 @@
 				<div class="col-xs-3">
 				<div class="form-group">
 				<label for="sel-vivo"> Enfermedades</label>				
-				<select   name="enferm" class="form-control" id="sel-vivo">
+				<select   name="enferm" class="form-control" >
 					
 					<?php
 
@@ -289,7 +289,7 @@
 						    		while($row = mysqli_fetch_array($result))
 						    		 {
 						    		 	
-						    		 	echo "<option value=' ".$row[enf_cod]." ' >".$row[enf_nom]."</option>";
+						    		 	echo "<option>".$row[enf_nom]."</option>";
 						    		 	
 						       		 
 						    		}				    	

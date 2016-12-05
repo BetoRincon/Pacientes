@@ -25,7 +25,7 @@
 	<?php
 				 echo "<nav class='navbar  navbar-default navbar-fixed-top' style='background: white;'>
 					<div class='container'>
-				 <p class='navbar-brand' style=' color: #22467F;' >Usuario: ".strtoupper($_SESSION['usuario'])."</p>
+				 <p class='navbar-brand' style=' color: #22467F;' >Usuario: ".strtoupper(utf8_decode($_SESSION['usuario']))."</p>
 					<div class='collapse navbar-collapse'>
 					<ul class='nav navbar-nav'>
 						<li><a style=' color: #22467F;'  href='#'>Inicio</a></li>
